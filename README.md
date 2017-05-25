@@ -1,2 +1,2 @@
 # zhihu-daily
-use vue to completea pwa
+use vue to complete a pwa
