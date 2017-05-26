@@ -1,11 +1,13 @@
 <template>
     <div id="app">
       <v-header></v-header>
+      <v-slider></v-slider>
     </div>
 </template>
 
 <script>
 import vHeader from './components/header.vue'
+import vSlider from './components/slider.vue'
 export default {
     name: 'app',
     data () {
@@ -14,7 +16,8 @@ export default {
         }
     },
     components:{
-        vHeader
+        vHeader,
+        vSlider
     }
 }
 </script>
@@ -25,11 +28,14 @@ export default {
    margin:0;
    box-sizing: border-box;
 }
+html, body, #app{
+    height:100%;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  position:relative;
 }
 
 
@@ -38,7 +44,18 @@ ul,li{
 }
 
 li {
-  display: inline-block;
+
+}
+span{
+  display:inline-block;
+  vertical-align: top;
+}
+.flex{
+    display:flex;
+    display: -webkit-flex; /* Safari */
+    flex-direction:row;
+    flex-wrap: nowrap;
+    justify-content:space-between;
 }
 
 </style>
