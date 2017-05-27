@@ -4,6 +4,7 @@
         <ul>
             <li v-for="item in newsList">
                 {{item.title}}
+                <img :src="item.images[0]" alt="">
             </li>
         </ul>
     </div>
@@ -35,10 +36,15 @@
             padding:0.2rem 2rem 0.2rem 0.2rem;
             background-color:#fff;
             margin:0.2rem;
-            background-image:url(../assets/logo.png);
-            background-size:1.2rem;
-            background-repeat:no-repeat;
-            background-position:98% center;
+            position:relative;
+
+            img{
+                width:1.2rem;
+                height:1.2rem;
+                position:absolute;
+                right:0.3rem;
+                top:0.2rem;
+            }
         }
     }
 </style>

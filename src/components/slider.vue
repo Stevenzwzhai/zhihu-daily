@@ -10,13 +10,13 @@
             </div>
             <ul>
                 <li class="title">首页</li>
-                <li v-for="item in themesList" v-text="item.name" ></li>
+                <li v-for="item in themesList" :key="item.id" :class="[isAdd?'close':'add']" v-text="item.name" @click="getNews(item)"></li>
             </ul>
         </div>
     </div>
 </template>
 <script>
-import {mapState, mapMutations} from 'vuex'
+import {mapState, mapMutations, mapActions} from 'vuex'
 import API from '../api/API'
 const api = new API();
 console.log(api);
@@ -36,15 +36,21 @@ export default {
     data(){
         return {
             isShow:true,
-            themesList:[]
+            themesList:[],
+            isAdd:false
         }
     },
     computed:mapState([
        'isShowSlider'
     ]),
-    methods:mapMutations([
-            'hideSlider'
-        ])
+    methods:{
+            ...mapMutations([
+                'hideSlider'
+            ]),
+            ...mapActions([
+                'getNews'
+            ])
+    }
         
     
 }
@@ -113,7 +119,7 @@ export default {
                     line-height:0.8rem;
                     color:#1188BA;
                     background-color:#F0F0F0;
-                    padding-left:0.5rem;
+
                     background-image: url(../assets/svg/home.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
@@ -123,6 +129,13 @@ export default {
                 li{
                     height:0.8rem;
                     line-height:0.8rem;
+                    padding-left:0.5rem;
+                }
+                .add{
+
+                }
+                .close{
+
                 }
             }
         }
