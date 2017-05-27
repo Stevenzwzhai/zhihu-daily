@@ -31,6 +31,10 @@ export default {
         background-color:#359DDA;
         height:1rem;
         line-height: 1rem;
+        position:absolute;
+        top:0;
+        width:100%;
+        z-index:100;
         
         span{
             height: 1rem;

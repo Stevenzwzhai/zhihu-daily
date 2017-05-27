@@ -63,6 +63,7 @@ export default {
         font-size:0.3rem;
         background-color:rgba(0,0,0,0);
         transition:all 0.5s ease-in 0s;
+        z-index: 200;
 
         .left{
             width:75%;

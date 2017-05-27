@@ -1,13 +1,15 @@
 <template>
     <div id="app">
-      <v-header></v-header>
-      <v-slider></v-slider>
+        <v-header></v-header>
+        <v-slider></v-slider>
+        <v-news></v-news>
     </div>
 </template>
 
 <script>
 import vHeader from './components/header.vue'
 import vSlider from './components/slider.vue'
+import vNews from './daily/news.vue'
 export default {
     name: 'app',
     data () {
@@ -17,7 +19,8 @@ export default {
     },
     components:{
         vHeader,
-        vSlider
+        vSlider,
+        vNews
     }
 }
 </script>

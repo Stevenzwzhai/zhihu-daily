@@ -9,12 +9,14 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "mint-ui": "^2.2.7",
     "vue": "^2.2.1",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
+    "babel-plugin-component": "^0.9.1",
     "babel-preset-latest": "^6.0.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",

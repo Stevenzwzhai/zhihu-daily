@@ -7,7 +7,7 @@ class API {
     // }
     get(api, param){
         config.params = param || {};
-        return axios.get('/themes', config);
+        return axios.get(api, config);
     }
     post(data){
         config.data = data || {};

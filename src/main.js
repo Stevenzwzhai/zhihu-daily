@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import 'mint-ui/lib/style.css'
 import store from './vuex/store'
+
 
 (() => {
   var deviceWidth = document.documentElement.clientWidth;
