@@ -1,7 +1,7 @@
 <template>
 	<div id="news">
 		<v-swiper :imageList="imageList"></v-swiper>
-		<v-list :newsList="newsList"></v-list>
+		<v-list :title="newsTitle" :newsList="newsList"></v-list>
 	</div>
 </template>
 <script>
@@ -14,19 +14,19 @@
 	export default{
 		name:"news",
 		mounted(){
-			console.log(1);
-			let that = this;
-			api.get('/last-stories')
-				.then((res) => {
-					if(res.status == 200){
-						that.changeData({
-							'imageList':res.data.STORIES.top_stories,
-							'newsList':res.data.STORIES.stories
-						})
-					}
-				}).catch(err=>{
-					throw err;
-				})
+			// let that = this;
+			// api.get('/last-stories')
+			// 	.then((res) => {
+			// 		if(res.status == 200){
+			// 			that.changeData({
+			// 				'imageList':res.data.STORIES.top_stories,
+			// 				'newsList':res.data.STORIES.stories,
+			// 				'newsTitle':"今日新聞"
+			// 			})
+			// 		}
+			// 	}).catch(err=>{
+			// 		throw err;
+			// 	})
 		},
 		data(){
 			return {
@@ -36,7 +36,8 @@
 		computed:{
 			...mapState([
 					'imageList',
-        			'newsList'
+        			'newsList',
+        			'newsTitle'
 				])
 		},
 		methods:{

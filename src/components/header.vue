@@ -55,7 +55,7 @@ export default {
             background-image: url(../assets/svg/notify.svg);
         }
         .setting{
-            background-image: url(../assets/svg/more-y.svg)
+            background-image: url(../assets/svg/more-y.svg);
         }
     }
 </style>

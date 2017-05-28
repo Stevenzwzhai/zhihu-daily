@@ -1,10 +1,10 @@
 <template>
     <div id="list">
-        <h5 class="title">今日新闻</h5>
+        <h5 class="title">{{title}}</h5>
         <ul>
             <li v-for="item in newsList">
                 {{item.title}}
-                <img :src="item.images[0]" alt="">
+                <img :src="item.images?item.images[0]:defaultImage" alt="">
             </li>
         </ul>
     </div>
@@ -13,9 +13,11 @@
     export default{
         name:'list',
         data(){
-            return {}
+            return {
+                defaultImage:"http://p1.zhimg.com/80/0b/800b79a4821a535de31b349ffdc9eabb.jpg"
+            }
         },
-        props:['newsList']
+        props:['title', 'newsList']
     }
 </script>
 <style scoped lang="sass">

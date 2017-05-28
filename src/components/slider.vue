@@ -8,9 +8,8 @@
                     <span class="download">我的下载</span>
                 </div>
             </div>
-            <ul>
-                <li class="title">首页</li>
-                <li v-for="item in themesList" :key="item.id" :class="[isAdd?'close':'add']" v-text="item.name" @click="getNews(item)"></li>
+            <ul @click="get($event)">
+                <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed close':'add', item.id=='0000'?'title':'']" v-text="item.name" ></li>
             </ul>
         </div>
     </div>
@@ -28,10 +27,18 @@ export default {
             .then((res) => {
                 if(res.status==200){
                     that.themesList = res.data.THEMES.others || [];
+                    that.themesList.unshift({
+                        id:'0000',
+                        name:"首页",
+                        isSelected:true
+                    })
                 }
             }).catch((err) => {
                 throw err;
             })
+        this.getNews({
+            id:'0000'
+        });
     },
     data(){
         return {
@@ -49,7 +56,17 @@ export default {
             ]),
             ...mapActions([
                 'getNews'
-            ])
+            ]),
+            get(event){
+                let item = this.themesList[event.target.getAttribute("index")];
+                this.themesList.forEach((item, index) => {
+                    item.isSelected = index==event.target.getAttribute("index")?true:false;
+                })
+                // event.target.className+="pressed";
+                this.getNews({
+                    id:item.id
+                });
+            }
     }
         
     
@@ -115,16 +132,15 @@ export default {
             
             ul{
                 .title{
-                    height:0.8rem;
-                    line-height:0.8rem;
-                    color:#1188BA;
-                    background-color:#F0F0F0;
-
                     background-image: url(../assets/svg/home.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
-                    background-position:0.4rem center;
+                    background-position:0.5rem center;
                     padding-left:1.2rem;
+                }
+                .pressed{
+                    background-color:#F0F0F0;
+                    color:#1188BA;
                 }
                 li{
                     height:0.8rem;
@@ -132,10 +148,16 @@ export default {
                     padding-left:0.5rem;
                 }
                 .add{
-
+                    background-image: url(../assets/svg/home.svg);
+                    background-size:0.5rem;
+                    background-repeat:no-repeat;
+                    background-position:98% center;
                 }
                 .close{
-
+                    background-image: url(../assets/svg/more-y.svg);
+                    background-size:0.5rem;
+                    background-repeat:no-repeat;
+                    background-position:98% center;
                 }
             }
         }
