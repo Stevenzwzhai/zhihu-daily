@@ -9,7 +9,7 @@
                 </div>
             </div>
             <ul @click="get($event)">
-                <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed close':'add', item.id=='0000'?'title':'']" v-text="item.name" ></li>
+                <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed':'', item.id=='0000'?'title':(item.isAdd?'more':'add')]" v-text="item.name" ></li>
             </ul>
         </div>
     </div>
@@ -43,8 +43,7 @@ export default {
     data(){
         return {
             isShow:true,
-            themesList:[],
-            isAdd:false
+            themesList:[]
         }
     },
     computed:mapState([
@@ -59,9 +58,11 @@ export default {
             ]),
             get(event){
                 let item = this.themesList[event.target.getAttribute("index")];
+                item.isAdd = item.id=='0000'? false : true;
                 this.themesList.forEach((item, index) => {
                     item.isSelected = index==event.target.getAttribute("index")?true:false;
                 })
+
                 // event.target.className+="pressed";
                 this.getNews({
                     id:item.id
@@ -148,13 +149,13 @@ export default {
                     padding-left:0.5rem;
                 }
                 .add{
-                    background-image: url(../assets/svg/home.svg);
+                    background-image: url(../assets/svg/add.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
                     background-position:98% center;
                 }
-                .close{
-                    background-image: url(../assets/svg/more-y.svg);
+                .more{
+                    background-image: url(../assets/svg/more-x.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
                     background-position:98% center;
