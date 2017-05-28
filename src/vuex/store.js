@@ -23,10 +23,9 @@ export default new Vuex.Store({
         hideSlider(state){
             state.isShowSlider = false;
         },
-        changeData(state, imageList, newsList){
-            console.log(newsList)
-            state.imageList = imageList;
-            state.newsList = newsList;
+        changeData(state, obj){
+            state.imageList = obj.imageList;
+            state.newsList = obj.newsList;
         }
     },
     actions:{
