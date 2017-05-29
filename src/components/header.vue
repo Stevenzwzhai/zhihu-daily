@@ -1,7 +1,8 @@
 <template>
     <div id="header" class="flex">
         <div class="left">
-            <span class="category" @click="showSlider()"></span>
+            <span v-show="currentView=='vNews'" class="category" @click="showSlider()"></span>
+            <span v-show="currentView=='vDetail'" class="back" @click="back()"></span>
             <span class="title" v-text="title" @click="changeSliderKey()"></span>
         </div>
         <div class="right">
@@ -11,7 +12,7 @@
     </div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 export default {
     name:"header",
     data () {
@@ -19,9 +20,13 @@ export default {
             title:"首页"
         }
     },
+    computed:{
+        ...mapState(['currentView'])
+    },
     methods:mapMutations([
             'showSlider',
-            'changeSliderKey'
+            'changeSliderKey',
+            'back'
         ])
 }
 </script>
@@ -48,6 +53,10 @@ export default {
         }
         .category{
             background-image: url(../assets/svg/Category.svg);
+        }
+        .back{
+            background-image: url(../assets/svg/arrow.svg);
+            transform:rotate(90deg);
         }
         .title{
             width:2rem;

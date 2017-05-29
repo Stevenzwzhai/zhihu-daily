@@ -1,5 +1,5 @@
 <template>
-    <div id="slider" :class="{show:isShowSlider,}" @click="hideSlider()">
+    <div id="slider" :class="{show:isShowSlider}" @click="hideSlider()">
         <div class="left">
             <div class="user-info">
                 <div class="login">请登录</div>
@@ -11,17 +11,18 @@
             <ul @click="get($event)">
                 <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed':'', item.id=='0000'?'title':'']"  >
                     {{item.name}}
-                    <span :class="[item.isAdd?'more':'add']" @click="changeState(index, item.id)" v-show="item.id!=='0000'"></span>
+                    <span :class="[item.isAdd?'more':'add']" @click.stop="changeState(index, item.id, $event)" v-show="item.id!=='0000'"></span>
                 </li>
             </ul>
         </div>
+        <tooltip :isShow="showTooltip" :content="toolContent" @update:isShow="val=>showTooltip=val"></tooltip>
     </div>
 </template>
 <script>
+import tooltip from './tooltip.vue'
 import {mapState, mapMutations, mapActions} from 'vuex'
 import API from '../api/API'
 const api = new API();
-console.log(api);
 export default {
     name:"slider",
     mounted(){
@@ -46,7 +47,9 @@ export default {
     data(){
         return {
             isShow:true,
-            themesList:[]
+            themesList:[],
+            toolContent:"you have added it",
+            showTooltip:false
         }
     },
     computed:mapState([
@@ -60,7 +63,7 @@ export default {
                 'getNews'
             ]),
             get(event){
-                let item = this.themesList[+event.target.getAttribute("index")];
+                let currentItem = this.themesList[+event.target.getAttribute("index")];
                 
                 this.themesList.forEach((item, index) => {
                     item.isSelected = index==event.target.getAttribute("index")?true:false;
@@ -68,16 +71,25 @@ export default {
 
                 // event.target.className+="pressed";
                 this.getNews({
-                    id:item.id
+                    id:currentItem.id
                 });
             },
-            changeState(index, id){
-                let item = this.themesList[+index];
-                item.isAdd = !item.isAdd;
-                this.getNews({
-                    id:id
-                })
+            changeState(currentIndex, id, event){
+                let currentItem = this.themesList[+currentIndex];
+
+                currentItem.isAdd = !currentItem.isAdd;
+                // this.getNews({
+                //     id:id
+                // })
+                event.preventDefault();
+                this.showTooltip = true;
+            },
+            hideTooltip(){
+                // this.showTooltip = false;
             }
+    },
+    components:{
+        tooltip
     }
         
     

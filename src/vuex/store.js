@@ -41,6 +41,9 @@ export default new Vuex.Store({
         toDetail(state, detail){
             state.newsDetail = detail;
             state.currentView = "vDetail";
+        },
+        back(state){
+            state.currentView = "vNews";
         }
     },
     actions:{
