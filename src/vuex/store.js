@@ -11,7 +11,12 @@ export default new Vuex.Store({
         isShowSlider:false,
         imageList:[],
         newsList:[],
-        newsTitle:""
+        newsTitle:"",
+        sliderKey:true,
+        currentView:'vNews',
+        newsDetail:{
+            body:""
+        }
     },
     getters:{
 
@@ -28,6 +33,14 @@ export default new Vuex.Store({
             state.imageList = obj.imageList || [];
             state.newsList = obj.newsList || [];
             state.newsTitle = obj.newsTitle || "";
+            state.currentView = 'vNews';
+        },
+        changeSliderKey(state){
+            state.sliderKey = !state.sliderKey;
+        },
+        toDetail(state, detail){
+            state.newsDetail = detail;
+            state.currentView = "vDetail";
         }
     },
     actions:{
@@ -64,6 +77,15 @@ export default new Vuex.Store({
                 })
                 .catch((err)=>{
                     throw err;
+                })
+        },
+        getNewsDetail({commit, state}, id){
+            api.get(`/contents/${id}`)
+                .then(res => {
+                    if(res.status==200){
+                        console.log(res.data);
+                        commit('toDetail', res.data.CONTENTS)
+                    }
                 })
         }
     }

@@ -9,7 +9,10 @@
                 </div>
             </div>
             <ul @click="get($event)">
-                <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed':'', item.id=='0000'?'title':(item.isAdd?'more':'add')]" v-text="item.name" ></li>
+                <li v-for="(item, index) in themesList" :key="item.id" :index="index" :class="[item.isSelected?'pressed':'', item.id=='0000'?'title':'']"  >
+                    {{item.name}}
+                    <span :class="[item.isAdd?'more':'add']" @click="changeState(index, item.id)" v-show="item.id!=='0000'"></span>
+                </li>
             </ul>
         </div>
     </div>
@@ -57,8 +60,8 @@ export default {
                 'getNews'
             ]),
             get(event){
-                let item = this.themesList[event.target.getAttribute("index")];
-                item.isAdd = item.id=='0000'? false : true;
+                let item = this.themesList[+event.target.getAttribute("index")];
+                
                 this.themesList.forEach((item, index) => {
                     item.isSelected = index==event.target.getAttribute("index")?true:false;
                 })
@@ -67,6 +70,13 @@ export default {
                 this.getNews({
                     id:item.id
                 });
+            },
+            changeState(index, id){
+                let item = this.themesList[+index];
+                item.isAdd = !item.isAdd;
+                this.getNews({
+                    id:id
+                })
             }
     }
         
@@ -147,18 +157,25 @@ export default {
                     height:0.8rem;
                     line-height:0.8rem;
                     padding-left:0.5rem;
+                    position:relative;
+                    span{
+                        position:absolute;
+                        width:0.8rem;
+                        height:0.8rem;
+                        right:0;
+                    }
                 }
                 .add{
                     background-image: url(../assets/svg/add.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
-                    background-position:98% center;
+                    background-position:center;
                 }
                 .more{
                     background-image: url(../assets/svg/more-x.svg);
                     background-size:0.5rem;
                     background-repeat:no-repeat;
-                    background-position:98% center;
+                    background-position:center;
                 }
             }
         }

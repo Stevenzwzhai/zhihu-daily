@@ -2,7 +2,7 @@
     <div id="header" class="flex">
         <div class="left">
             <span class="category" @click="showSlider()"></span>
-            <span class="title" v-text="title"></span>
+            <span class="title" v-text="title" @click="changeSliderKey()"></span>
         </div>
         <div class="right">
             <span class="notify"></span>
@@ -20,7 +20,8 @@ export default {
         }
     },
     methods:mapMutations([
-            'showSlider'
+            'showSlider',
+            'changeSliderKey'
         ])
 }
 </script>

@@ -1,26 +1,34 @@
 <template>
     <div id="app">
         <v-header></v-header>
-        <v-slider></v-slider>
-        <v-news></v-news>
+        <v-slider :key="sliderKey"></v-slider>
+        <keep-alive>
+            <component :is="currentView">
+              <!-- 非活动组件将被缓存！ -->
+            </component>
+        </keep-alive>
     </div>
 </template>
-
 <script>
 import vHeader from './components/header.vue'
 import vSlider from './components/slider.vue'
 import vNews from './daily/news.vue'
+import vDetail from './daily/detail.vue'
+import {mapState} from 'vuex'
 export default {
     name: 'app',
     data () {
         return {
-            msg: 'Welcome to Your Vue.js App'
         }
+    },
+    computed:{
+        ...mapState(['sliderKey', 'currentView'])
     },
     components:{
         vHeader,
         vSlider,
-        vNews
+        vNews,
+        vDetail
     }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
     <div id="list">
         <h5 class="title">{{title}}</h5>
-        <ul>
-            <li v-for="item in newsList">
+        <ul @click="getDetail($event)">
+            <li v-for="(item, index) in newsList" :index="index">
                 {{item.title}}
                 <img :src="item.images?item.images[0]:defaultImage" alt="">
             </li>
@@ -10,6 +10,7 @@
     </div>
 </template>
 <script>
+    import {mapActions} from 'vuex'
     export default{
         name:'list',
         data(){
@@ -17,7 +18,14 @@
                 defaultImage:"http://p1.zhimg.com/80/0b/800b79a4821a535de31b349ffdc9eabb.jpg"
             }
         },
-        props:['title', 'newsList']
+        props:['title', 'newsList'],
+        methods:{
+            ...mapActions(['getNewsDetail']),
+            getDetail(event){
+                let item = this.newsList[+event.target.getAttribute('index')];
+                this.getNewsDetail(item.id)
+            }
+        }
     }
 </script>
 <style scoped lang="sass">
