@@ -86,7 +86,6 @@ export default new Vuex.Store({
             api.get(`/contents/${id}`)
                 .then(res => {
                     if(res.status==200){
-                        console.log(res.data);
                         commit('toDetail', res.data.CONTENTS)
                     }
                 })
