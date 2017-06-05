@@ -20,6 +20,8 @@ api:<https://segmentfault.com/a/1190000009242864>
 
 这里没有使用路由，所以点击进入详情之后只能点击顶部的返回按钮返回
 
+调试过程中，知乎的图片防盗可以在图片url前加http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=
+
 use vue to complete a pwa
 
 演示地址：<https://stevenzwzhai.github.io/zhihu-daily/>
