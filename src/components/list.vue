@@ -2,7 +2,7 @@
     <div id="list">
         <h5 class="title">{{title}}</h5>
         <ul @click="getDetail($event)">
-            <li v-for="(item, index) in newsList" :index="index">
+            <li v-for="(item, index) in newsLists" :index="index">
                 {{item.title}}
                 <img :src="item.images?item.images[0]:defaultImage" alt="">
             </li>
@@ -15,10 +15,19 @@
         name:'list',
         data(){
             return {
-                defaultImage:"http://p1.zhimg.com/80/0b/800b79a4821a535de31b349ffdc9eabb.jpg"
+                defaultImage:"https://p1.zhimg.com/80/0b/800b79a4821a535de31b349ffdc9eabb.jpg"
             }
         },
         props:['title', 'newsList'],
+        computed:{
+            newsLists(){
+                return this.newsList.map(item=>{
+                            item.images = [item.images[0].replace(/http\w{0,1}:\/\//, 'https://images.weserv.nl/?url=')]
+                            return item;
+
+                        })
+            }
+        },
         methods:{
             ...mapActions(['getNewsDetail']),
             getDetail(event){

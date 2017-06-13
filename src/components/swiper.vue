@@ -26,7 +26,7 @@
         computed:{
             imageLists(){
                 return this.imageList.map((item) => {
-                    // item.image = item.image.replace(/^(https|http)/, 'https');
+                     item.image = item.image.replace(/http\w{0,1}:\/\//, 'https://images.weserv.nl/?url=');
                     return item;
                 })
             }
