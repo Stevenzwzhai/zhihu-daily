@@ -23,6 +23,8 @@ api:<https://segmentfault.com/a/1190000009242864>
 调试过程中，知乎的图片防盗可以在图片url前加http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=
 由于pwa要在https下访问，所以内置http请求会有问题，这里采用另一种方式imgUrl.replace(/http\w{0,1}:\/\//g, 'https://images.weserv.nl/?url=');原理跟上述一致，不过是https。
 
+##### 首页图片放到链接已经解决。
+
 use vue to complete a pwa
 
 演示地址：<https://stevenzwzhai.github.io/zhihu-daily/>
