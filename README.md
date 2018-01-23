@@ -28,3 +28,6 @@ api:<https://segmentfault.com/a/1190000009242864>
 use vue to complete a pwa
 
 演示地址：<https://stevenzwzhai.github.io/zhihu-daily/>
+
+扫一扫
+![pwa.png](https://zzw-19940625-1253788257.cos.ap-guangzhou.myqcloud.com/pwa.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID3TLT2c1NeVqqwkGYoc95fT3xRXSdHzAE%26q-sign-time%3D1516704584%3B1516706384%26q-key-time%3D1516704584%3B1516706384%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dc41eba99a62a0224d6be0a667733e22610fdf294&token=d1619cf1046e7ccc7d296687b152382ac37c902b10001&clientIP=219.133.170.174&clientUA=525057dd-c988-494c-be70-fa46297ea3c5)
